@@ -1,0 +1,21 @@
+# IDE and editor files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Log files
+*.log
+
+# Server/runtime specific
+/assets/uploads/avatars/*
+!/assets/uploads/avatars/.gitkeep

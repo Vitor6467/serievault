@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SerieVault — Sua Plataforma de Obras Audiovisuais</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/serievault/assets/css/styles.css" />
+
+  <!-- React + Babel (CDN) -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body { background: #0a0a0f; color: #f1f0f5; }
+    #loading-screen {
+      position: fixed; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: #0a0a0f;
+      z-index: 9999;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .loader-logo {
+      font-size: 36px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #fff, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .loader-bar {
+      width: 200px; height: 3px;
+      background: #1a1a2e;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .loader-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #7c3aed, #a855f7);
+      border-radius: 2px;
+      animation: load 1.5s ease-in-out infinite;
+    }
+    @keyframes load {
+      0%   { width: 0%; margin-left: 0; }
+      50%  { width: 80%; }
+      100% { width: 0%; margin-left: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div id="loading-screen">
+    <div class="loader-logo">🎬 SerieVault</div>
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+    <p style="font-size:13px;color:#5a5970;">Protegendo aplicação...</p>
+  </div>
+
+  <div id="root"></div>
+
+  <!-- Load all bundled JSX from the backend script -->
+  <script type="text/babel" data-presets="env,react" src="/serievault/assets/js/bundle.php"></script>
+
+  <script>
+    window.__removeLoader = function() {
+      const el = document.getElementById('loading-screen');
+      if (el) { el.style.opacity = '0'; el.style.transition = 'opacity 0.4s'; setTimeout(() => el.remove(), 400); }
+    };
+  </script>
+</body>
+</html>

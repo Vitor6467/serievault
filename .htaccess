@@ -1,0 +1,14 @@
+RewriteEngine On
+RewriteBase /serievault/
+
+# Se for API, vai para api.php
+RewriteCond %{REQUEST_URI} ^/serievault/api/
+RewriteRule ^(.*)$ api.php [QSA,L]
+
+# Se for arquivo existente (ex: /assets/styles.css), serve o arquivo
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Se não for API nem arquivo, vai para o React (SPA)
+RewriteRule ^ views/index.html [L]
